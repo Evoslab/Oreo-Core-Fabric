@@ -1,34 +1,33 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "oreocore",
   "version": "1.0.0",
 
-  "name": "Fabric Example Mod",
-  "description": "StevenPlayzz's Fabric Example Mod!",
+  "name": "Oreo Core",
+  "description": "",
   "authors": [
-    "FabricMC team",
-    "Draylar",
-    "StevePlayzz"
+    "Evoslab"
   ],
   "contact": {
-    "homepage": "https://github.com/StevePlayzz",
-    "sources": "https://github.com/StevePlayzz/Fabric-Example-Mod"
+    "homepage": "https://github.com/Evoslab/Oreo-Core",
+    "sources": "https://github.com/Evoslab/Oreo-Core",
+    "issues": "https://github.com/Evoslab/Oreo-Core/issues"
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/oreocore/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.steveplayzz.modid.ExampleMod"
+      "com.github.steveplayzz.oreocore.core.OreoCore"
     ],
     "client": [
-      "com.github.steveplayzz.modid.ExampleModClient"
+      "com.github.steveplayzz.oreocore.core.OreoCoreClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "oreocore.mixins.json"
   ],
 
   "depends": {
@@ -37,6 +36,6 @@
     "minecraft": "1.16.x"
   },
   "suggests": {
-    "flamingo": "*"
+    "mod": "*"
   }
 }

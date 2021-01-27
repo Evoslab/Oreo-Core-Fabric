@@ -1,10 +1,10 @@
-package com.github.steveplayzz.modid.config;
+package com.github.steveplayzz.oreocore.core.config;
 
-import com.github.steveplayzz.modid.ExampleMod;
+import com.github.steveplayzz.oreocore.core.OreoCore;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 
-@Config(name = ExampleMod.MODID)
+@Config(name = OreoCore.MODID)
 public class ModConfig implements ConfigData {
 
 }

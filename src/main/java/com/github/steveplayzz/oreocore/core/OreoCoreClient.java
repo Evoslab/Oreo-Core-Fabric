@@ -1,8 +1,8 @@
-package com.github.steveplayzz.modid;
+package com.github.steveplayzz.oreocore.core;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class ExampleModClient implements ClientModInitializer {
+public class OreoCoreClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
