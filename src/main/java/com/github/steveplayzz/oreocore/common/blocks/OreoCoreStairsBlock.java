@@ -51,11 +51,11 @@ public class OreoCoreStairsBlock extends Block implements Waterloggable {
     protected static final VoxelShape TOP_SOUTH_EAST_CORNER_SHAPE;
     protected static final VoxelShape[] TOP_SHAPES;
     protected static final VoxelShape[] BOTTOM_SHAPES;
-    private static final int[] SHAPE_INDICES;
-    private final Block baseBlock;
-    private final BlockState baseBlockState;
+    public static final int[] SHAPE_INDICES;
+    public final Block baseBlock;
+    public final BlockState baseBlockState;
 
-    private static VoxelShape[] composeShapes(VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
+    public static VoxelShape[] composeShapes(VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
         return (VoxelShape[]) IntStream.range(0, 16).mapToObj((i) -> {
             return composeShape(i, base, northWest, northEast, southWest, southEast);
         }).toArray((i) -> {
@@ -63,7 +63,7 @@ public class OreoCoreStairsBlock extends Block implements Waterloggable {
         });
     }
 
-    private static VoxelShape composeShape(int i, VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
+    public static VoxelShape composeShape(int i, VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
         VoxelShape voxelShape = base;
         if ((i & 1) != 0) {
             voxelShape = VoxelShapes.union(base, northWest);
@@ -99,7 +99,7 @@ public class OreoCoreStairsBlock extends Block implements Waterloggable {
         return (state.get(HALF) == BlockHalf.TOP ? TOP_SHAPES : BOTTOM_SHAPES)[SHAPE_INDICES[this.getShapeIndexIndex(state)]];
     }
 
-    private int getShapeIndexIndex(BlockState state) {
+    public int getShapeIndexIndex(BlockState state) {
         return ((StairShape)state.get(SHAPE)).ordinal() * 4 + ((Direction)state.get(FACING)).getHorizontal();
     }
 
@@ -173,7 +173,7 @@ public class OreoCoreStairsBlock extends Block implements Waterloggable {
         return direction.getAxis().isHorizontal() ? (BlockState)state.with(SHAPE, getStairShape(state, world, pos)) : super.getStateForNeighborUpdate(state, direction, newState, world, pos, posFrom);
     }
 
-    private static StairShape getStairShape(BlockState state, BlockView world, BlockPos pos) {
+    public static StairShape getStairShape(BlockState state, BlockView world, BlockPos pos) {
         Direction direction = (Direction)state.get(FACING);
         BlockState blockState = world.getBlockState(pos.offset(direction));
         if (isStairs(blockState) && state.get(HALF) == blockState.get(HALF)) {
@@ -202,7 +202,7 @@ public class OreoCoreStairsBlock extends Block implements Waterloggable {
         return StairShape.STRAIGHT;
     }
 
-    private static boolean method_10678(BlockState state, BlockView world, BlockPos pos, Direction dir) {
+    public static boolean method_10678(BlockState state, BlockView world, BlockPos pos, Direction dir) {
         BlockState blockState = world.getBlockState(pos.offset(dir));
         return !isStairs(blockState) || blockState.get(FACING) != state.get(FACING) || blockState.get(HALF) != state.get(HALF);
     }

@@ -19,12 +19,6 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-      "com.github.steveplayzz.oreocore.core.OreoCore"
-    ],
-    "client": [
-      "com.github.steveplayzz.oreocore.core.OreoCoreClient"
-    ]
   },
   "mixins": [
     "oreocore.mixins.json"
