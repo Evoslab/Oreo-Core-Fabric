@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.github.evoslab.oreocore.core.mixin",
+  "package": "com.github.evoslab.oreocore.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
 

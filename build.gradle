@@ -26,12 +26,6 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 }
 
-allprojects {
-	repositories {
-		maven { url 'https://jitpack.io' }
-	}
-}
-
 processResources {
 	inputs.property "version", project.version
 
@@ -82,5 +76,11 @@ publishing {
 	repositories {
 		// uncomment to publish to the local maven
 		// mavenLocal()
+	}
+}
+
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
 	}
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "oreocore",
-  "version": "1.0.0",
+  "version": "beta-1.0.3",
 
   "name": "Oreo Core",
   "description": "",
@@ -19,7 +19,9 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": ["com.github.evoslab.oreocore.core.OreoCore"]
+    "main": [
+      "com.github.evoslab.oreocore.core.OreoCore"
+    ]
   },
   "mixins": [
     "oreocore.mixins.json"
