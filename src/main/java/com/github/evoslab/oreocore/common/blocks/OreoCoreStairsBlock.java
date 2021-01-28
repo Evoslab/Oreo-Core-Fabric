@@ -1,4 +1,4 @@
-package com.github.steveplayzz.oreocore.common.blocks;
+package com.github.evoslab.oreocore.common.blocks;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

@@ -1,6 +1,6 @@
-package com.github.steveplayzz.oreocore.core.config;
+package com.github.evoslab.oreocore.core.config;
 
-import com.github.steveplayzz.oreocore.core.OreoCore;
+import com.github.evoslab.oreocore.core.OreoCore;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigManager;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.ConfigSerializer;
