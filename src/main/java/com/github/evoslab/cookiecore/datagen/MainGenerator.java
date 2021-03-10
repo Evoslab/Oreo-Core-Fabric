@@ -1,4 +1,4 @@
-package com.github.evoslab.oreocore.json;
+package com.github.evoslab.cookiecore.datagen;
 
 import net.devtech.arrp.api.RRPCallback;
 import net.devtech.arrp.api.RuntimeResourcePack;

@@ -1,6 +1,6 @@
-package com.github.evoslab.oreocore.json;
+package com.github.evoslab.cookiecore.datagen;
 
-import com.github.evoslab.oreocore.OreoCore;
+import com.github.evoslab.cookiecore.CookieCore;
 import com.google.common.collect.ImmutableList;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.devtech.arrp.json.blockstate.JState;
@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.github.evoslab.oreocore.OreoCore.MOD_ID;
 import static net.devtech.arrp.json.blockstate.JState.variant;
 import static net.devtech.arrp.json.models.JModel.textures;
 
@@ -107,7 +106,7 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
         Registry.register(Registry.BLOCK, id, block);
         Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 
-        resourcePack.addLang(OreoCore.id("en_us"), JLang.lang().translate(prefixPathAsStringLang(id, "block", path), lang_en_us));
+        resourcePack.addLang(CookieCore.id("en_us"), JLang.lang().translate(prefixPathAsStringLang(id, "block", path), lang_en_us));
 
         resourcePack.addBlockState(
                 JState.state()

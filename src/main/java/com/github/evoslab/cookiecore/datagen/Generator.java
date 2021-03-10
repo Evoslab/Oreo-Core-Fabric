@@ -1,9 +1,9 @@
-package com.github.evoslab.oreocore.json;
+package com.github.evoslab.cookiecore.datagen;
 
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.minecraft.util.Identifier;
 
-import static com.github.evoslab.oreocore.OreoCore.*;
+import static com.github.evoslab.cookiecore.CookieCore.*;
 
 public abstract class Generator<T, This extends Generator<T, This>> {
 

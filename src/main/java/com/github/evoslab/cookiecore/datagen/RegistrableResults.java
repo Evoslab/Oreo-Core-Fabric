@@ -1,4 +1,4 @@
-package com.github.evoslab.oreocore.json;
+package com.github.evoslab.cookiecore.datagen;
 
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

@@ -1,4 +1,4 @@
-package com.github.evoslab.oreocore.json;
+package com.github.evoslab.cookiecore.datagen;
 
 import net.devtech.arrp.json.blockstate.JState;
 import net.devtech.arrp.json.loot.JLootTable;

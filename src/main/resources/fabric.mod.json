@@ -1,36 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "oreocore",
+  "id": "cookiecore",
   "version": "beta-1.0.3",
 
   "name": "Oreo Core",
-  "description": "",
+  "description": "A library for all the mods, it also adds datagen from ARRP!",
   "authors": [
     "Evoslab"
   ],
   "contact": {
-    "homepage": "https://github.com/Evoslab/Oreo-Core",
-    "sources": "https://github.com/Evoslab/Oreo-Core",
-    "issues": "https://github.com/Evoslab/Oreo-Core/issues"
+    "homepage": "https://github.com/Evoslab/Cookie-Core-Fabric",
+    "sources": "https://github.com/Evoslab/Cookie-Core-Fabric",
+    "issues": "https://github.com/Evoslab/Cookie-Core-Fabric/issues"
   },
 
   "license": "MIT",
-  "icon": "assets/oreocore/icon.png",
+  "icon": "assets/cookiecore/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.evoslab.oreocore.OreoCore"
+      "com.github.evoslab.cookiecore.CookieCore"
     ]
   },
   "mixins": [
-    "oreocore.mixins.json"
+    "cookiecore.mixins.json"
   ],
 
   "depends": {
     "fabricloader": ">=0.7.4",
-    "fabric": "*",
-    "minecraft": "1.16.x"
+    "fabric": "*"
   },
   "suggests": {
     "mod": "*"

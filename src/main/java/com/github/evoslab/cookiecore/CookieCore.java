@@ -1,6 +1,6 @@
-package com.github.evoslab.oreocore;
+package com.github.evoslab.cookiecore;
 
-import com.github.evoslab.oreocore.json.MainGenerator;
+import com.github.evoslab.cookiecore.datagen.MainGenerator;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -9,9 +9,9 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class OreoCore implements ModInitializer {
+public class CookieCore implements ModInitializer {
 
-	public static final String MOD_ID = "oreocore";
+	public static final String MOD_ID = "cookiecore";
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
 	private static final MainGenerator generator = new MainGenerator(MOD_ID);
@@ -20,6 +20,8 @@ public class OreoCore implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+
+		//TODO: Add Flamboyant stuff
 
 	}
 
