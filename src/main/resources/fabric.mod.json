@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.evoslab.oreocore.core.OreoCore"
+      "com.github.evoslab.oreocore.OreoCore"
     ]
   },
   "mixins": [

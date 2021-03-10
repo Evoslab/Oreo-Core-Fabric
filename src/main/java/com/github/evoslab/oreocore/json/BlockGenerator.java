@@ -1,8 +1,10 @@
 package com.github.evoslab.oreocore.json;
 
+import com.github.evoslab.oreocore.OreoCore;
 import com.google.common.collect.ImmutableList;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.devtech.arrp.json.blockstate.JState;
+import net.devtech.arrp.json.lang.JLang;
 import net.devtech.arrp.json.loot.JLootTable;
 import net.devtech.arrp.json.models.JModel;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -18,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.github.evoslab.oreocore.OreoCore.MOD_ID;
 import static net.devtech.arrp.json.blockstate.JState.variant;
 import static net.devtech.arrp.json.models.JModel.textures;
 
@@ -99,15 +102,12 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
         return null;
     }
 
-
-    /**
-     * Registers a block that is mostly uninteresting, like a true decoration block
-     * hanging there in the backyard.
-     */
-    public <T extends Block> T registerBlandBlock(T block, String path) {
+    public <T extends Block> T registerBlandBlock(T block, String path, String lang_en_us) {
         Identifier id = new Identifier(namespace, path);
         Registry.register(Registry.BLOCK, id, block);
-        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+
+        resourcePack.addLang(OreoCore.id("en_us"), JLang.lang().translate(prefixPathAsStringLang(id, "block", path), lang_en_us));
 
         resourcePack.addBlockState(
                 JState.state()
