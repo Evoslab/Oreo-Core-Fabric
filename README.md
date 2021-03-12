@@ -1,14 +1,31 @@
-# Fabric Example Mod
+# Introduction to Cookie Core
 
-StevenPlayzz's fork of Draylar's fork of the fabric-example-mod. Includes a modified package structure as well as several registry classes and a client initializer.
+Welcome to Cookie Core wiki!
 
-## Setup
+## Installation & Dependencies
 
-1. Edit build.gradle and mod.json to suit your needs.
-    * The "mixins" object can be removed from mod.json if you do not need to use mixins.
-    * Please replace all occurences of "modid" with your own mod ID - sometimes, a different string may also suffice.
-2. Run the following command:
+* To install it you must put Cookie Core Dependancie in your _build.gradle_
+* _You also have to install ARRP which is basically datagen and  Cookie Core **requires** this \(also in your build.gradle\)_
 
+```text
+dependencies {
+	//ARRP
+	modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
+	//Cookie Core
+	modImplementation group: 'com.github.evoslab', name: 'cookiecore', version: '0.0.2'
+}
+
+repositories {
+	//ARRP Maven
+	maven {
+		url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+	}
+	//Cookie Core Maven
+	maven {
+		url = 'https://raw.githubusercontent.com/Evoslab/Evoslab-Maven-Repo/master/'
+	}
+}
 ```
-./gradlew idea
-```
+
+## 
+
