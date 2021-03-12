@@ -5,7 +5,7 @@ import net.minecraft.block.StairsBlock;
 
 public class CookieCoreStairsBlock extends StairsBlock {
 
-    protected CookieCoreStairsBlock(BlockState baseBlockState, Settings settings) {
+    public CookieCoreStairsBlock(BlockState baseBlockState, Settings settings) {
         super(baseBlockState, settings);
     }
 

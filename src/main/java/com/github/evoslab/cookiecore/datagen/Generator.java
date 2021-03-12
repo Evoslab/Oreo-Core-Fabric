@@ -3,15 +3,13 @@ package com.github.evoslab.cookiecore.datagen;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.minecraft.util.Identifier;
 
-import static com.github.evoslab.cookiecore.CookieCore.*;
-
 public abstract class Generator<T, This extends Generator<T, This>> {
 
     public final String namespace;
     protected final RuntimeResourcePack resourcePack;
 
     public Generator(String namespace, RuntimeResourcePack resourcePack) {
-        this.namespace = MOD_ID;
+        this.namespace = namespace;
         this.resourcePack = resourcePack;
     }
 
@@ -41,6 +39,22 @@ public abstract class Generator<T, This extends Generator<T, This>> {
 
     protected static String prefixPathAsStringSide(Identifier id, String prefix) {
         return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_side";
+    }
+
+    protected static Identifier prefixPathTop(Identifier id, String prefix) {
+        return new Identifier(id.getNamespace(), prefix + "/" + id.getPath() + "_top");
+    }
+
+    protected static String prefixPathAsStringInner(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_inner";
+    }
+
+    protected static String prefixPathAsStringOuter(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_outer";
+    }
+
+    protected static String prefixPathAsStringDouble(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_double";
     }
 
 }

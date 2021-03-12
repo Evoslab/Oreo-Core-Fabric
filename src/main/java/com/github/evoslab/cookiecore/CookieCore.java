@@ -16,8 +16,10 @@ public class CookieCore implements ModInitializer {
 
 	private static final MainGenerator generator = new MainGenerator(MOD_ID);
 
-	public static Block EXAMPLE_BLOCK = generator.block.registerBlandBlock(new Block(FabricBlockSettings.of(Material.AIR)), "example_block","Example Block");
-
+	/**
+	 * This is an example All sided block
+	public static Block EXAMPLE_BLOCK = generator.block.registerAllSidedBlock(new Block(FabricBlockSettings.of(Material.AIR)), "example_block","Example Block");
+	 */
 	@Override
 	public void onInitialize() {
 

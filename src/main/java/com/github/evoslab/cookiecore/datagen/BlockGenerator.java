@@ -1,6 +1,7 @@
 package com.github.evoslab.cookiecore.datagen;
 
 import com.github.evoslab.cookiecore.CookieCore;
+import com.github.evoslab.cookiecore.blocks.main.CookieCoreStairsBlock;
 import com.google.common.collect.ImmutableList;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.devtech.arrp.json.blockstate.JState;
@@ -101,7 +102,7 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
         return null;
     }
 
-    public <T extends Block> T registerBlandBlock(T block, String path, String lang_en_us) {
+    public <T extends Block> T registerAllSidedBlock(T block, String path, String lang_en_us) {
         Identifier id = new Identifier(namespace, path);
         Registry.register(Registry.BLOCK, id, block);
         Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
@@ -122,6 +123,146 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
                                 .var("all", prefixPathAsString(id, "block"))
                         ),
                 prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+
+    public <T extends Block> T registerSlabBlock(T block, String path, String doublepath) {
+        Identifier id = new Identifier(namespace, path);
+        Identifier idtop = new Identifier(namespace, path + "_top");
+        Identifier iddouble = new Identifier(namespace, doublepath);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("type=bottom", JState.model(prefixPathAsString(id, "block")))
+                                .put("type=double", JState.model(prefixPathAsString(iddouble, "block")))
+                                .put("type=top", JState.model(prefixPathAsStringTop(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/slab")
+                        .textures(textures()
+                                .var("bottom", prefixPathAsString(iddouble, "block"))
+                                .var("top", prefixPathAsString(iddouble, "block"))
+                                .var("side", prefixPathAsString(iddouble, "block"))
+                        ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/slab_top")
+                        .textures(textures()
+                                .var("bottom", prefixPathAsString(iddouble, "block"))
+                                .var("side", prefixPathAsString(iddouble, "block"))
+                                .var("top", prefixPathAsString(iddouble, "block"))
+                        ),
+                prefixPath(idtop, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+    public <T extends CookieCoreStairsBlock> T registerStairBlock(T block, String path, String doublepath) {
+        Identifier id = new Identifier(namespace, path);
+        Identifier idinner = new Identifier(namespace, path + "_inner");
+        Identifier idoutter = new Identifier(namespace, path + "_inner");
+        Identifier iddouble = new Identifier("minecraft", doublepath);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("facing=east,half=bottom,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).y(270).uvlock())
+                                .put("facing=east,half=bottom,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")))
+                                .put("facing=east,half=bottom,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).y(270).uvlock())
+                                .put("facing=east,half=bottom,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")))
+                                .put("facing=east,half=bottom,shape=straight", JState.model(prefixPathAsString(id, "block")))
+                                .put("facing=east,half=top,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).x(180).uvlock())
+                                .put("facing=east,half=top,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(90).uvlock())
+                                .put("facing=east,half=top,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).x(180).uvlock())
+                                .put("facing=east,half=top,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(90).uvlock())
+                                .put("facing=east,half=top,shape=straight", JState.model(prefixPathAsString(id, "block")).x(180).uvlock())
+                                .put("facing=north,half=bottom,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).y(180).uvlock())
+                                .put("facing=north,half=bottom,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).y(270).uvlock())
+                                .put("facing=north,half=bottom,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).y(180).uvlock())
+                                .put("facing=north,half=bottom,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).y(270).uvlock())
+                                .put("facing=north,half=bottom,shape=straight", JState.model(prefixPathAsString(id, "block")).y(270).uvlock())
+                                .put("facing=north,half=top,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(270).uvlock())
+                                .put("facing=north,half=top,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).x(180).uvlock())
+                                .put("facing=north,half=top,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(270).uvlock())
+                                .put("facing=north,half=top,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).x(180).uvlock())
+                                .put("facing=north,half=top,shape=straight", JState.model(prefixPathAsString(id, "block")).x(180).y(270).uvlock())
+                                .put("facing=south,half=bottom,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")))
+                                .put("facing=south,half=bottom,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).y(90).uvlock())
+                                .put("facing=south,half=bottom,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")))
+                                .put("facing=south,half=bottom,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).y(90).uvlock())
+                                .put("facing=south,half=bottom,shape=straight", JState.model(prefixPathAsString(id, "block")).y(90).uvlock())
+                                .put("facing=south,half=top,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(90).uvlock())
+                                .put("facing=south,half=top,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(180).uvlock())
+                                .put("facing=south,half=top,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(90).uvlock())
+                                .put("facing=south,half=top,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(180).uvlock())
+                                .put("facing=south,half=top,shape=straight", JState.model(prefixPathAsString(id, "block")).x(180).y(90).uvlock())
+                                .put("facing=west,half=bottom,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).y(90).uvlock())
+                                .put("facing=west,half=bottom,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).y(180).uvlock())
+                                .put("facing=west,half=bottom,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).y(90).uvlock())
+                                .put("facing=west,half=bottom,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).y(180).uvlock())
+                                .put("facing=west,half=bottom,shape=straight", JState.model(prefixPathAsString(id, "block")).y(180).uvlock())
+                                .put("facing=west,half=top,shape=inner_left", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(180).uvlock())
+                                .put("facing=west,half=top,shape=inner_right", JState.model(prefixPathAsStringInner(id, "block")).x(180).y(270).uvlock())
+                                .put("facing=west,half=top,shape=outer_left", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(180).uvlock())
+                                .put("facing=west,half=top,shape=outer_right", JState.model(prefixPathAsStringOuter(id, "block")).x(180).y(270).uvlock())
+                                .put("facing=west,half=top,shape=straight", JState.model(prefixPathAsString(id, "block")).x(180).y(180).uvlock())
+
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/stairs")
+                        .textures(textures()
+                                .var("bottom", prefixPathAsString(iddouble, "block"))
+                                .var("top", prefixPathAsString(iddouble, "block"))
+                                .var("side", prefixPathAsString(iddouble, "block"))
+                        ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/inner_stairs")
+                        .textures(textures()
+                                .var("bottom", prefixPathAsString(iddouble, "block"))
+                                .var("top", prefixPathAsString(iddouble, "block"))
+                                .var("side", prefixPathAsString(iddouble, "block"))
+                        ),
+                prefixPath(idinner, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/outer_stairs")
+                        .textures(textures()
+                                .var("bottom", prefixPathAsString(iddouble, "block"))
+                                .var("top", prefixPathAsString(iddouble, "block"))
+                                .var("side", prefixPathAsString(iddouble, "block"))
+                        ),
+                prefixPath(idoutter, "block")
         );
 
         resourcePack.addModel(
