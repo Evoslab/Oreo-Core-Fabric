@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "cookiecore",
-  "version": "0.0.2",
+  "version": "0.0.4",
 
   "name": "Oreo Core",
   "description": "A library for all the mods, it also adds datagen from ARRP!",

@@ -17,6 +17,31 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.jetbrains.annotations.Contract;
 
+import com.google.common.collect.ImmutableList;
+import net.devtech.arrp.api.RuntimeResourcePack;
+import net.devtech.arrp.json.blockstate.JState;
+import net.devtech.arrp.json.lang.JLang;
+import net.devtech.arrp.json.loot.JLootTable;
+import net.devtech.arrp.json.models.JDisplay;
+import net.devtech.arrp.json.models.JModel;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Contract;
+import static net.devtech.arrp.json.animation.JAnimation.*;
+import static net.devtech.arrp.json.blockstate.JState.*;
+import static net.devtech.arrp.json.lang.JLang.*;
+import static net.devtech.arrp.json.loot.JLootTable.*;
+import static net.devtech.arrp.json.models.JModel.*;
+import static net.devtech.arrp.json.tags.JTag.*;
+import static net.devtech.arrp.api.RuntimeResourcePack.id;
+import static net.devtech.arrp.json.loot.JLootTable.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -107,7 +132,7 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
         Registry.register(Registry.BLOCK, id, block);
         Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS)));
 
-        resourcePack.addLang(CookieCore.id("en_us"), JLang.lang().translate(prefixPathAsStringLang(id, "block", path), lang_en_us));
+        resourcePack.addLang(id("en_us"), JLang.lang().translate(prefixPathAsStringLang(id, "block", path), lang_en_us));
 
         resourcePack.addBlockState(
                 JState.state()
@@ -132,7 +157,6 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
 
         return block;
     }
-
 
     public <T extends Block> T registerSlabBlock(T block, String path, String doublepath) {
         Identifier id = new Identifier(namespace, path);
@@ -428,5 +452,218 @@ public class BlockGenerator extends Generator<Block, BlockGenerator> {
 
         return block;
     }
+
+
+    public <T extends Block> T registerBakedPotatoBlock(T block, String path) {
+        Identifier id = new Identifier(namespace, path);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("", JState.model(prefixPathAsString(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/cube_bottom_top")
+                        .textures(textures()
+                                .var("top", prefixPathAsStringTop(id, "block"))
+                                .var("bottom", prefixPathAsString(id, "block"))
+                                .var("side", prefixPathAsString(id, "block"))
+                        ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+    public <T extends Block> T registerSpecificAllSidedBlock(T block, String path) {
+        Identifier id = new Identifier(namespace, path);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("", JState.model(prefixPathAsString(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/cube")
+                        .textures(textures()
+                                .var("north", prefixPathAsString(id, "block"))
+                                .var("east", prefixPathAsStringSide(id, "block"))
+                                .var("south", prefixPathAsStringBack(id, "block"))
+                                .var("west", prefixPathAsStringSide(id, "block"))
+                                .var("up", prefixPathAsStringTop(id, "block"))
+                                .var("down", prefixPathAsStringBottom(id, "block"))
+
+                        ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/tinted_cross")
+                        .textures(textures()
+                                .var("cross", prefixPathAsStringLeaf(id, "block"))
+
+                        ),
+                prefixPathLeaf(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+    public <T extends Block> T registerTopBottomPillarBlock(T block, String path) {
+        Identifier id = new Identifier(namespace, path);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("", JState.model(prefixPathAsString(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/cube")
+                        .textures(textures()
+                                .var("north", prefixPathAsString(id, "block"))
+                                .var("east", prefixPathAsString(id, "block"))
+                                .var("south", prefixPathAsString(id, "block"))
+                                .var("west", prefixPathAsString(id, "block"))
+                                .var("up", prefixPathAsStringTop(id, "block"))
+                                .var("down", prefixPathAsStringBottom(id, "block"))
+
+                        ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/tinted_cross")
+                        .textures(textures()
+                                .var("cross", prefixPathAsStringLeaf(id, "block"))
+
+                        ),
+                prefixPathLeaf(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+    public <T extends Block> T registerLeafTopBlock(T block, String path) {
+        Identifier id = new Identifier(namespace, path);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("", JState.model(prefixPathAsString(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/block")
+                        .textures(textures()
+                                .var("top", prefixPathAsStringTop(id, "block"))
+                                .var("leaf", prefixPathAsStringLeaf(id, "block"))
+                                .var("front", prefixPathAsString(id, "block"))
+                                .var("bottom", prefixPathAsStringBottom(id, "block"))
+                                .var("particle", prefixPathAsStringTop(id, "block"))
+
+                        ).element(element()
+                        .from(0, 0, 0).to(16, 16, 16)
+                        .faces(faces()
+                                .north(face("front").uv(0, 0, 16, 16))
+                                .east(face("front").uv(0, 0, 16, 16))
+                                .south(face("front").uv(0, 0, 16, 16))
+                                .west(face("front").uv(0, 0, 16, 16))
+                                .up(face("top").uv(0, 0, 16, 16))
+                                .down(face("bottom").uv(0, 0, 16, 16))
+
+                        ).from(0, 16, 8).to(16, 24, 8)
+                        .faces(faces()
+                                .north(face("leaf").uv(0, 8, 16, 16))
+                                .east(face("leaf").uv(0, 0, 0, 8))
+                                .south(face("leaf").uv(0, 8, 16, 16))
+                                .west(face("leaf").uv(0, 0, 0, 8))
+                                .up(face("leaf").uv(0, 0, 16, 0))
+                                .down(face("leaf").uv(0, 0, 16, 0))
+
+                        ).faces(faces()
+                                .north(face("leaf").uv(0, 0, 0, 8))
+                                .east(face("leaf").uv(0, 8, 16, 16))
+                                .south(face("leaf").uv(0, 0, 0, 8))
+                                .west(face("leaf").uv(0, 8, 16, 16))
+                                .up(face("leaf").uv(0, 0, 16, 0))
+                                .down(face("leaf").uv(0, 0, 16, 0))
+
+                        )
+                ),
+                prefixPath(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model("minecraft:block/tinted_cross")
+                        .textures(textures()
+                                .var("cross", prefixPathAsStringLeaf(id, "block"))
+
+                        ),
+                prefixPathLeaf(id, "block")
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
+    public <T extends Block> T registerBlandBlandBlock(T block, String path) {
+        Identifier id = new Identifier(namespace, path);
+        Registry.register(Registry.BLOCK, id, block);
+        Registry.register(Registry.ITEM, id, new BlockItem(block, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+
+        resourcePack.addBlockState(
+                JState.state()
+                        .add(variant()
+                                .put("", JState.model(prefixPathAsString(id, "block")))
+                        ),
+                id
+        );
+
+        resourcePack.addModel(
+                JModel.model(prefixPathAsString(id, "block")),
+                prefixPath(id, "item")
+        );
+
+        return block;
+    }
+
 
 }

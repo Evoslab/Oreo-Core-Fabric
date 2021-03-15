@@ -25,6 +25,10 @@ public abstract class Generator<T, This extends Generator<T, This>> {
         return new Identifier(id.getNamespace(), prefix + "/" + id.getPath());
     }
 
+    protected static Identifier prefixPathLeaf(Identifier id, String prefix) {
+        return new Identifier(id.getNamespace(), prefix + "/" + id.getPath());
+    }
+
     protected static String prefixPathAsString(Identifier id, String prefix) {
         return id.getNamespace() + ":" + prefix + "/" + id.getPath();
     }
@@ -38,6 +42,18 @@ public abstract class Generator<T, This extends Generator<T, This>> {
     }
 
     protected static String prefixPathAsStringSide(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_side";
+    }
+
+    protected static String prefixPathAsStringBack(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_side";
+    }
+
+    protected static String prefixPathAsStringBottom(Identifier id, String prefix) {
+        return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_side";
+    }
+
+    protected static String prefixPathAsStringLeaf(Identifier id, String prefix) {
         return id.getNamespace() + ":" + prefix + "/" + id.getPath() + "_side";
     }
 

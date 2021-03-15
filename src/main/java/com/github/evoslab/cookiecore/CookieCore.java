@@ -27,8 +27,4 @@ public class CookieCore implements ModInitializer {
 
 	}
 
-	public static Identifier id(String name) {
-		return new Identifier(MOD_ID, name);
-	}
-
 }
