@@ -10,9 +10,9 @@ Welcome to Cookie Core wiki!
 ```text
 dependencies {
 	//ARRP
-	modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
+	modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.9'
 	//Cookie Core
-	modImplementation group: 'com.github.evoslab', name: 'cookiecore', version: '0.0.2'
+	modImplementation group: 'com.github.evoslab', name: 'cookiecore', version: '0.0.4'
 }
 
 repositories {
